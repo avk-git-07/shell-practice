@@ -2,7 +2,7 @@
 
 # in the above line(shebang) the # will not be treated as a comment and in the rest of the code it will be treated as comment.
 
-Person1=Mohan # no gap between variable, equals to sign, and value
+Person1=Mohandas # no gap between variable, equals to sign, and value
 Person2=Karamchand # no gap between variable, equals to sign, and value
 
 echo "$Person1: Hello $Person2!! how are you !!!"
