@@ -11,9 +11,9 @@
 # fi
 
 n2 = 20
-if [$n2 -gt 10]
+if [$n2 -lt 10]
 then
-    echo "your entered number $n2 is greater than 10"
+    echo "the number $n2 is greater than 10"
 else
-    echo "your entered number $n2 is less than 10"
+    echo "the number $n2 is less than 10"
 fi
