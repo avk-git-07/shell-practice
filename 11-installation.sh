@@ -18,4 +18,4 @@ then
     dnf install git -y
 else
     echo "The git is installed, nothing to do..."
-    
+fi
