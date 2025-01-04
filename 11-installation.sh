@@ -11,11 +11,18 @@ then
 fi
 
 
-dnf list installed git
+dnf list installed gittt
 if [ $? -ne 0 ]
 then
     echo "The git is not yet installed, let us install it."
-    dnf install git -y
+    dnf install gittt -y
+    if [ $? -ne 0 ]
+    then
+        echo "The git installation is not success. Please check it."
+        exit 1
+    else
+        echo "The git installation is success"
+    fi
 else
     echo "The git is installed, nothing to do..."
 fi
