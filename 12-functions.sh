@@ -10,7 +10,7 @@ VALIDATE() {
         echo "$3.. is failed.."
         exit 1
     else 
-        echo "$0.. is success.."
+        echo "$4.. is success.."
     fi
 }
 
