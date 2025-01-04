@@ -5,6 +5,8 @@ echo "Number of variables passed : $#"
 echo "Script Name: $0"
 echo "Current Working Directory: $PWD"
 echo "Home Directory of current user: $HOME"
-echo "Process Instance ID of the script executing now: $$"
+echo "PID(Process Instance ID) of the script executing now: $$"
+sleep 100 &
+echo "PID of last background command: $!" 
 
 
