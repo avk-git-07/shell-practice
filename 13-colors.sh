@@ -28,7 +28,7 @@ then
     dnf install git -y
     VALIDATE $? "Git Installation"
 else
-    echo -e "\e{32m The git is installed, nothing to do..."
+    echo -e "\e[32m The git is installed, nothing to do..."
 fi
 
 dnf list installed mysql
