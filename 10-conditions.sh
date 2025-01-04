@@ -11,7 +11,7 @@
 # fi
 
 n2=20
-if [ $n2 -lt 10 ] # gap should be there
+if [ $n2 -gt 10 ] # gap should be there
 then
     echo "the number $n2 is greater than 10"
 else
