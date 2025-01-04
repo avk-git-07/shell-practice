@@ -3,7 +3,7 @@
 # echo "Please enter a number"
 # read n1
 
-# if [$n1 -gt 10]
+# if [ $n1 -gt 10 ] # gap should be there
 # then
 #     echo "your entered number $n1 is greater than 10"
 # else
@@ -11,7 +11,7 @@
 # fi
 
 n2 = 20
-if [$n2 -lt 10]
+if [ $n2 -lt 10 ] # gap should be there
 then
     echo "the number $n2 is greater than 10"
 else
