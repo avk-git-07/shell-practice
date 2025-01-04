@@ -10,7 +10,7 @@
 #     echo "your entered number $n1 is less than 10"
 # fi
 
-n2 = 20
+n2=20
 if [ $n2 -lt 10 ] # gap should be there
 then
     echo "the number $n2 is greater than 10"
