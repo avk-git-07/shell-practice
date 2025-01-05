@@ -23,10 +23,15 @@ VALIDATE() {
     fi
 }
 
-
-
 # the usage Ex: sh 15-loops.sh git mysql postfix nginx etc. all these packages will be installed one by one
 for package in $@ # $@ means for all arguments passed to it. In the above example all listed packages will come in to $@
 do 
-    echo $package
+    dnf list installed $package
+    if [ $? -ne 0 ]
+    then 
+        echo "The $package is not installed, we are going to install it.."
+        dnf install $package -y
+        VALIDATE $? $package "installation"
+    else
+        echo "The $package is already installed, nothing to do ..."
 done 
