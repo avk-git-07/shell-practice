@@ -1,6 +1,6 @@
 #!/bin/bash
 
-UID=$(id -u)
+USRID=$(id -u)
 R="\e[31m"
 G="\e[32m"
 N="\e[0m" # no color
@@ -18,7 +18,7 @@ VALIDATE() {
 }
 
 # IF THIS CONDITION IS TRUE THEN ONLY IT WILL BE PRINTED ELSE IT WILL BE SKIPPED
-if [ $UID -ne 0 ]
+if [ $USRID -ne 0 ]
 then
     echo "Please run the script with root user"
     exit 1
