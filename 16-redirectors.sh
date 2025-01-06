@@ -20,6 +20,16 @@ then
     exit 1
 fi
 
+USAGE(){
+    echo -e "$R USAGE:: sudo sh 16-redirectors.sh package1 package2 ... etc, this is how we have to run the script !!! $N"
+    exit 1
+}
+
+if [ $# -ne 0 ]
+then 
+    USAGE
+fi
+
 # THIS FUNCTION WILL BE UNTOUCHED UNLESS IT IS CALLED
 VALIDATE() {
     if [ $1 -ne 0 ]
@@ -31,15 +41,6 @@ VALIDATE() {
     fi
 }
 
-USAGE(){
-    echo -e "$R USAGE:: sudo sh 16-redirectors.sh package1 package2 ... etc, this is how we have to run the script !!! $N"
-    exit 1
-}
-
-if [ $# -ne 0 ]
-then 
-    USAGE
-fi
 
 for package in $@ # $@ means for all arguments passed to it. In the above example all listed packages will come in to $@
 do 
