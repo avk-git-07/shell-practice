@@ -14,11 +14,11 @@ Y="\e[33m"
 N="\e[0m" # no color
 
 #CHECK_ROOT(){
-    if [ $USRID -ne 0 ]
-    then
-        echo "Please run the script with root user" &>> $LOG_FILE
-        exit 1
-    fi
+if [ $USRID -ne 0 ]
+then
+    echo "Please run the script with root user" &>> $LOG_FILE
+    exit 1
+fi
 #}
 
 
