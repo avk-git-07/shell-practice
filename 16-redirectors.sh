@@ -18,16 +18,16 @@ USAGE(){
     exit 1
 }
 
+if [ $# -ne 0 ]
+then 
+    USAGE
+fi
+
 # IF THIS CONDITION IS TRUE THEN ONLY IT WILL BE PRINTED ELSE IT WILL BE SKIPPED
 if [ $USRID -ne 0 ]
 then
     echo "Please run the script with root user" &>> $LOG_FILE
     exit 1
-fi
-
-if [ $# -ne 0 ]
-then 
-    USAGE
 fi
 
 # THIS FUNCTION WILL BE UNTOUCHED UNLESS IT IS CALLED
