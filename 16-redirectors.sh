@@ -16,7 +16,7 @@ N="\e[0m" # no color
 #CHECK_ROOT(){
 if [ $USRID -ne 0 ]
 then
-    echo "Please run the script with root user"
+    echo "Please run the script with root user" &>> LOG_FILE
     exit 1
 fi
 #}
@@ -45,6 +45,8 @@ USAGE(){
 #         echo "Please run the script with root user" &>> $LOG_FILE
 #         exit 1
 #     fi
+echo "Script started executing at : $date"
+
 
 if [ $# -eq 0 ]
 then 
