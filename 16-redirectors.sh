@@ -55,11 +55,11 @@ fi
 
 for package in $@ # $@ means for all arguments passed to it. In the above example all listed packages will come in to $@
 do 
-    dnf list installed $package | tee -a  $LOG_FILE
+    dnf list installed $package &>> $LOG_FILE
     if [ $? -ne 0 ]
     then 
         echo "The $package is not installed, we are going to install it.." | tee -a  $LOG_FILE
-        dnf install $package -y | tee -a  $LOG_FILE
+        dnf install $package -y &>> $LOG_FILE
         VALIDATE $? "installation of $package" | tee -a  $LOG_FILE
     else
         echo -e "$Y The $package is already installed, nothing to do ... $N" | tee -a  $LOG_FILE
