@@ -45,7 +45,7 @@ USAGE(){
 #         echo "Please run the script with root user" &>> $LOG_FILE
 #         exit 1
 #     fi
-echo "Script started executing at : $date"
+echo "Script started executing at : $(date)"
 
 
 if [ $# -eq 0 ]
