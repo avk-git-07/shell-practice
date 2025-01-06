@@ -13,22 +13,14 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m" # no color
 
-USAGE(){
-    echo -e "$R USAGE:: sudo sh 16-redirectors.sh package1 package2 ... etc, this is how we have to run the script !!! $N"
-    exit 1
+CHECK_ROOT(){
+    if [ $USRID -ne 0 ]
+    then
+        echo "Please run the script with root user" &>> $LOG_FILE
+        exit 1
+    fi
 }
 
-if [ $# -ne 0 ]
-then 
-    USAGE
-fi
-
-# IF THIS CONDITION IS TRUE THEN ONLY IT WILL BE PRINTED ELSE IT WILL BE SKIPPED
-if [ $USRID -ne 0 ]
-then
-    echo "Please run the script with root user" &>> $LOG_FILE
-    exit 1
-fi
 
 # THIS FUNCTION WILL BE UNTOUCHED UNLESS IT IS CALLED
 VALIDATE() {
@@ -41,6 +33,18 @@ VALIDATE() {
     fi
 }
 
+USAGE(){
+    echo -e "$R USAGE:: sudo sh 16-redirectors.sh package1 package2 ... etc, this is how we have to run the script !!! $N"
+    exit 1
+}
+
+# IF THIS CONDITION IS TRUE THEN ONLY IT WILL BE PRINTED ELSE IT WILL BE SKIPPED
+CHECK_ROOT
+
+if [ $# -ne 0 ]
+then 
+    USAGE
+fi
 
 for package in $@ # $@ means for all arguments passed to it. In the above example all listed packages will come in to $@
 do 
