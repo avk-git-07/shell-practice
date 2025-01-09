@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex # Setting the automatic exit, if we get error. Here -e for exit and -ex for debug
+set -e # Setting the automatic exit, if we get error. Here -e for exit and -ex for debug
 
 failure(){
     echo "Failed at: $1:$2"
