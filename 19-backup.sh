@@ -21,21 +21,21 @@ fi
 
 if [ ! -d $SOURCE_DIR ]
 then
-    echo -e "$R The $SOURCE_DIR folder does not exist $N"
+    echo -e "$R The $SOURCE_DIR folder does not exist.. please check $N"
 fi
 
 if [ ! -d $DEST_DIR ]
 then
-    echo -e "$R The $DEST_DIR folder does not exist $N"
+    echo -e "$R The $DEST_DIR folder does not exist.. please check $N"
 fi
 
-FILES=$(find ${SOURCE_DIR} -name "*.log" -mtime +15)
+FILES=$(find ${SOURCE_DIR} -name "*.log" -mtime +${NO_DAYS})
 
-echo "Files: $FILES"
 
-if [ ! -z $FILES ] # TRUE if FILES empty
+if [ -n $FILES ] # TRUE if FILES are not empty, i.e., some files are there
 then 
     echo "Files are found"
+    echo "$FILES"
 else 
     echo "No files found older than $NO_DAYS"
 fi
