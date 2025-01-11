@@ -31,6 +31,10 @@ fi
 
 FILES=$(find ${SOURCE_DIR} -name "*.log" -mtime +${NO_DAYS})
 
+while IFS= read -r file; do
+    echo "Processing file: $file"
+done <<< "$FILES"
+
 
 if [ -n $FILES ] # TRUE if FILES are not empty, i.e., some files are there
 then 
