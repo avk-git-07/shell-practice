@@ -36,7 +36,7 @@ FILES=$(find ${SOURCE_DIR} -name "*.log" -mtime +${NO_DAYS})
 # done <<< "$FILES"
 
 
-if [ -n $FILES ] # TRUE if FILES are not empty, i.e., some files are there
+if [ -n "$FILES" ] # TRUE if FILES are not empty, i.e., some files are there
 then 
     echo "Files are found"
     echo "$FILES"
