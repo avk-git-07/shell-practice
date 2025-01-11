@@ -14,7 +14,7 @@ USAGE(){
 }
 
 # now check the distination directory and source directory provided or not
-if [ $# -lt 2 ] && [ $# -gt 3 ]
+if [ $# -lt 2 ] || [ $# -gt 3 ]
 then 
     USAGE
 fi
