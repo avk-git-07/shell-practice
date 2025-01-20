@@ -102,7 +102,7 @@ files=$(find ${source_dir} -name "*.log" -mtime ${days})
 if [ -n ${files} ]
 then 
     echo -e "${G}the log files more than 15 days are found ${N}"
-    echo -e "${files}"
+    echo -e "Files: $files"
     dest_zip_file="${dest_dir}/app_logs-${timestamp}.zip"
     find ${source_dir} -name "*.log" -mtime ${days} | zip ${dest_zip_file} -@
     echo -e "${G}the log files more than 15 days are zippied in the destination directory ${N}"
