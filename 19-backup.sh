@@ -73,25 +73,25 @@ N="\e[0m" # Reset
 # check destination directory and source directory correctly provided or not
 if [ $# -lt 2 ] || [ $# -gt 3 ]
 then 
-    echo "${R}Usage:: 19-backup.sh <source> <destination> <no. of days> ${N}"
+    echo -e "${R}Usage:: 19-backup.sh <source> <destination> <no. of days> ${N}"
     exit 1
 fi
 
 # check whether the source directory is given correct or not
 if [ -d source_dir ]
 then 
-    echo "${G}Source Directory is found ${N}"
+    echo -e "${G}Source Directory is found ${N}"
 else 
-    echo "${R}Source Directory is not found ${N} "
+    echo -e "${R}Source Directory is not found ${N} "
     exit 1
 fi
 
 # check whether the destination directory is given correct or not
 if [ -d dest_dir ]
 then 
-    echo "${G}Destination Directory is found ${N}"
+    echo -e "${G}Destination Directory is found ${N}"
 else 
-    echo "${R}Destination Directory is not found ${N} "
+    echo -e "${R}Destination Directory is not found ${N} "
     exit 1
 fi
 
@@ -101,19 +101,19 @@ files=$(find ${source_dir} -name "*.log" -mtime ${days})
 # zip the collected files in destination directory and delete the collected files from the source directory
 if [ -n ${files} ]
 then 
-    echo "${G}the log files more than 15 days are found ${N}"
-    echo "${files}"
+    echo -e "${G}the log files more than 15 days are found ${N}"
+    echo -e "${files}"
     dest_zip_file=$(${dest_dir}/app_logs-${timestamp}.zip)
     ${files} | zip ${dest_zip_file} -@
-    echo "${G}the log files more than 15 days are zippied in the destination directory ${N}"
+    echo -e "${G}the log files more than 15 days are zippied in the destination directory ${N}"
     
     while IFS= read -r file
     do 
-        echo "${G}removing the older log files more than 15 days from the source directory ${N}"
+        echo -e "${G}removing the older log files more than 15 days from the source directory ${N}"
         rm -rf $file
     done <<< $files
 else 
-    echo "${R}the log files more than 15 days are not found ${N}"
+    echo -e "${R}the log files more than 15 days are not found ${N}"
     exit 1
 fi
 
