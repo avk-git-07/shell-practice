@@ -78,20 +78,20 @@ then
 fi
 
 # check whether the source directory is given correct or not
-if [ -d source_dir ]
+if [ ! -d source_dir ]
 then 
-    echo -e "${G}Source Directory is found ${N}"
-else 
-    echo -e "${R}Source Directory is not found ${N} "
+#     echo -e "${G}Source Directory is found ${N}"
+# else 
+    echo -e "${R}Source Directory is not found, please check... ${N} "
     exit 1
 fi
 
 # check whether the destination directory is given correct or not
-if [ -d dest_dir ]
+if [ ! -d dest_dir ]
 then 
-    echo -e "${G}Destination Directory is found ${N}"
-else 
-    echo -e "${R}Destination Directory is not found ${N} "
+#     echo -e "${G}Destination Directory is found ${N}"
+# else 
+    echo -e "${R}Destination Directory is not found, please check...  ${N} "
     exit 1
 fi
 
