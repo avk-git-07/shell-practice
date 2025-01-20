@@ -96,14 +96,14 @@ else
 fi
 
 # collect the log files more than 15 days in this files variable
-files=$(find ${source_dir} -name "*.log" -mtime ${days})
+filess=$(find ${source_dir} -name "*.log" -mtime ${days})
 
 # zip the collected files in destination directory and delete the collected files from the source directory
-if [ -n ${files} ]
+if [ -n ${filess} ]
 then 
     echo -e "${G}the log files more than 15 days are found ${N}"
-    echo -e "Files: $files"
-    dest_zip_file="${dest_dir}/app_logs-${timestamp}.zip"
+    echo -e "Files: $filess"
+    dest_zip_file="$dest_dir/app_logs-$timestamp.zip"
     find ${source_dir} -name "*.log" -mtime ${days} | zip ${dest_zip_file} -@
     echo -e "${G}the log files more than 15 days are zippied in the destination directory ${N}"
     
@@ -111,7 +111,7 @@ then
     do 
         echo -e "${G}removing the older log files more than 15 days from the source directory ${N}"
         rm -rf $file
-    done <<< $files
+    done <<< $filess
 else 
     echo -e "${R}the log files more than 15 days are not found ${N}"
     exit 1
