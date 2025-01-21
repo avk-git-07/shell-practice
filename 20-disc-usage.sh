@@ -1,5 +1,6 @@
 #!/bin/bash
 R="\e[31m"
+G="\e[32m"
 N="\e[0m"
 disc_usage=$(df -hT | grep xfs)
 disc_threshold=5
@@ -9,7 +10,7 @@ while IFS= read -r line; do
     partition=$(echo "${line}" | grep xfs | awk -F " " '{print $NF}')
     if [ "${usage}" -ge "${disc_threshold}" ]
     then 
-        echo -e "${partition} - is showing ${R}${usage}% ${N}, which is more than the threshold percentage ${disc_threshold}, please check..."  
+        echo -e "${partition} - is showing ${R}${usage}% ${N}, which is more than the ${G}threshold percentage ${disc_threshold}${N}, please check..."  
     fi 
 done <<< "${disc_usage}"
 
