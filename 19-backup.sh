@@ -110,14 +110,13 @@ if [ -n "${FILES}" ]; then
         while IFS= read -r file; do 
         rm -rf "${file}"
         done <<< "${FILES}"
-        echo -e "${G}The log files older than ${days} days are successfully deleted from srouce directory.. ${N}"
+        echo -e "${G}The log files older than ${days} days are successfully deleted from source directory.. ${N}"
     else 
         echo -e "${R}Zipping log files failed..${N}"
     fi 
 else 
     echo -e "${R}The log files more than "${days}" are not found..${N}"
 fi 
-
 
 
 
