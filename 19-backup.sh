@@ -96,7 +96,7 @@ else
 fi
 
 # collect the log files more than 15 days in this files variable
-filess=$(find "${source_dir}" -name "*.log" -mtime "${days}" -print)
+filess=$(find "${source_dir}" -name "*.log" -mtime +"${days}" -print)
 
 # zip the collected files in destination directory and delete the collected files from the source directory
 if [ -n "${filess}" ]
