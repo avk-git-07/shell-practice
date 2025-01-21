@@ -78,7 +78,7 @@ then
 fi
 
 # check whether the source directory is given correct or not
-if [ -d ${source_dir} ]
+if [ -d "${source_dir}" ]
 then 
     echo -e "${G}Source Directory is found ${N}"
 else 
@@ -87,7 +87,7 @@ else
 fi
 
 # check whether the destination directory is given correct or not
-if [  -d ${dest_dir} ]
+if [  -d "${dest_dir}" ]
 then 
     echo -e "${G}Destination Directory is found ${N}"
 else 
@@ -96,24 +96,26 @@ else
 fi
 
 # collect the log files more than 15 days in this files variable
-filess=$(find ${source_dir} -name "*.log" -mtime ${days})
+filess=$(find "${source_dir}" -name "*.log" -mtime "${days}" -print)
 
 # zip the collected files in destination directory and delete the collected files from the source directory
-if [ -n ${filess} ]
+if [ -n "${filess}" ]
 then 
     echo -e "${G}the log files more than 15 days are found ${N}"
-    echo -e "Files: $filess"
-    dest_zip_file="$dest_dir/app_logs-$timestamp.zip"
-    find ${source_dir} -name "*.log" -mtime ${days} | zip ${dest_zip_file} -@
+    echo -e "${filess}"
+    
+    # zip the files
+    dest_zip_file="${dest_dir}/app_logs-${timestamp}.zip"
+    echo "${filess}" | zip "${dest_zip_file}" -@
     echo -e "${G}the log files more than 15 days are zippied in the destination directory ${N}"
     
     while IFS= read -r file
     do 
         echo -e "${G}removing the older log files more than 15 days from the source directory ${N}"
-        rm -rf $file
-    done <<< $filess
+        rm -rf "${file}"
+    done <<< "${filess}"
 else 
-    echo -e "${R}the log files more than 15 days are not found ${N}"
+    echo -e "${R}the log files more than ${days} days are not found ${N}"
     exit 1
 fi
 
