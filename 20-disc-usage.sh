@@ -9,7 +9,7 @@ while IFS= read -r line; do
     partition=$(echo "${line}" | grep xfs | awk -F " " '{print $NF}')
     if [ "${usage}" -ge "${disc_threshold}" ]
     then 
-        echo -e "${R}${partition} is showing ${usage}%, which is more than the threshold percentage ${disc_threshold}, please check...${N}"  
+        echo -e "${partition} - is showing ${R}${usage}% ${N}, which is more than the threshold percentage ${disc_threshold}, please check..."  
     fi 
 done <<< "${disc_usage}"
 
