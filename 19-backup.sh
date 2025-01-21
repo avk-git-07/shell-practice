@@ -104,11 +104,13 @@ if [ -n "${FILES}" ]; then
         zip_dest_file="${dest_dir}/app_logs-${timestamp}.zip"
         echo -e "${FILES}" | zip "${zip_dest_file}" -@
         echo -e "${G}Zipping log files successful.. ${N}"
+        echo -e "${G}The log files older than ${days} days taken backup at destination successfully .. ${N}"
 
         # deleting the older files
         while IFS= read -r file; do 
         rm -rf "${file}"
         done <<< "${FILES}"
+        echo -e "${G}The log files older than ${days} days are successfully deleted.. ${N}"
     else 
         echo -e "${R}Zipping log files failed..${N}"
     fi 
