@@ -62,70 +62,60 @@
 ###########################################################
 source_dir=$1
 dest_dir=$2
-days=${3:-15} # default to 15 days if not provided
+days=${3:-15} # defualt 15 days
 timestamp=$(date +%Y-%m-%d-%H-%M-%S)
+R="\e[31m" # red
+G="\e[32m" # green
+Y="\e[33m" # yellow
+N="\e[0m" # reset
 
-R="\e[31m" # Red
-G="\e[32m" # Green
-Y="\e[33m" # Yellow
-N="\e[0m" # Reset
+# verifying usage of arguments passing
+if [ $# -lt 2 ] || [ $# -gt 3 ]; then
+    echo -e "${R}Usage:: sh 19-backup.sh <source_dir> <destination_dir> <no. of days> ${N}"
+    exit 1
+fi 
 
-# check destination directory and source directory correctly provided or not
-if [ $# -lt 2 ] || [ $# -gt 3 ]
-then 
-    echo -e "${R}Usage:: 19-backup.sh <source> <destination> <no. of days> ${N}"
+# verifying source directory
+if [ -d "${source_dir}" ]; then
+    echo -e "${G}The source directory ${source_dir} is found ${N}"
+else
+    echo -e "${G}The source directory ${source_dir} is not found ${N}"
     exit 1
 fi
 
-# check whether the source directory is given correct or not
-if [ -d "${source_dir}" ]
-then 
-    echo -e "${G}Source Directory is found ${N}"
-else 
-    echo -e "${R}Source Directory is not found, please check... ${N} "
+# verifying destination directory
+if [ -d "${dest_dir}" ]; then
+    echo -e "${G}The destination directory ${dest_dir} is found ${N}"
+else
+    echo -e "${G}The destination directory ${dest_dir} is not found ${N}"
     exit 1
 fi
 
-# check whether the destination directory is given correct or not
-if [  -d "${dest_dir}" ]
-then 
-    echo -e "${G}Destination Directory is found ${N}"
-else 
-    echo -e "${R}Destination Directory is not found, please check...  ${N} "
-    exit 1
-fi
+# storing more than 15 days files in a variable
+FILES=$(find "${source_dir}" -name "*.log" -mtime +"${days}" -print)
 
-# collect the log files more than 15 days in this files variable
-filess=$(find "${source_dir}" -name "*.log" -mtime +"${days}" -print)
+# taking backup of log files
+if [ -n "${FILES}" ]; then 
+    echo -e "${G}The log files found.. ${N}"
+    echo "${FILES}"
 
-# zip the collected files in destination directory and delete the collected files from the source directory
-if [ -n "${filess}" ]
-then 
-    echo -e "${G}the log files more than 15 days are found ${N}"
-    echo -e "${filess}"
-    
-    # zip the files
-    dest_zip_file="${dest_dir}/app_logs-${timestamp}.zip"
-    echo "${filess}" | zip "${dest_zip_file}" -@
-    
-    if [ $? -eq 0 ]
-    then
-        echo -e "${G}the log files more than 15 days are zippied in the destination directory ${N}"
+    # zipping the backup files
+    if [ $? -eq 0 ]; then 
+        zip_dest_file="${dest_dir}/app_logs-${timestamp}.zip"
+        echo -e "${FILES}" | zip "${zip_dest_file}" -@
+        echo -e "${G}Zipping log files successful.. ${N}"
 
-        # delete the files older than 15 days
-        while IFS= read -r file
-        do 
-            echo -e "${G}removing the older log files more than 15 days from the source directory ${N}"
-            rm -rf "${file}"
-        done <<< "${filess}"
+        # deleting the older files
+        while IFS= read -r file; do 
+        rm -rf "${file}"
+        done <<< "${FILES}"
     else 
-        echo -e "${R}The files are not zipped..${N}"
-        exit 1
-    fi
+        echo -e "${R}Zipping log files failed..${N}"
+    fi 
 else 
-    echo -e "${R}the log files more than ${days} days are not found ${N}"
-    exit 1
-fi
+    echo -e "${G}The log files more than "${days}" are not found..${N}"
+fi 
+
 
 
 
