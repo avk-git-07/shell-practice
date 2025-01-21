@@ -79,7 +79,7 @@ fi
 if [ -d "${source_dir}" ]; then
     echo -e "${G}The source directory ${source_dir} is found ${N}"
 else
-    echo -e "${G}The source directory ${source_dir} is not found ${N}"
+    echo -e "${R}The source directory ${source_dir} is not found ${N}"
     exit 1
 fi
 
@@ -87,7 +87,7 @@ fi
 if [ -d "${dest_dir}" ]; then
     echo -e "${G}The destination directory ${dest_dir} is found ${N}"
 else
-    echo -e "${G}The destination directory ${dest_dir} is not found ${N}"
+    echo -e "${R}The destination directory ${dest_dir} is not found ${N}"
     exit 1
 fi
 
@@ -113,7 +113,7 @@ if [ -n "${FILES}" ]; then
         echo -e "${R}Zipping log files failed..${N}"
     fi 
 else 
-    echo -e "${G}The log files more than "${days}" are not found..${N}"
+    echo -e "${R}The log files more than "${days}" are not found..${N}"
 fi 
 
 
