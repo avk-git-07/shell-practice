@@ -107,13 +107,21 @@ then
     # zip the files
     dest_zip_file="${dest_dir}/app_logs-${timestamp}.zip"
     echo "${filess}" | zip "${dest_zip_file}" -@
-    echo -e "${G}the log files more than 15 days are zippied in the destination directory ${N}"
     
-    while IFS= read -r file
-    do 
-        echo -e "${G}removing the older log files more than 15 days from the source directory ${N}"
-        rm -rf "${file}"
-    done <<< "${filess}"
+    if [ $? -eq 0 ]
+    then
+        echo -e "${G}the log files more than 15 days are zippied in the destination directory ${N}"
+
+        # delete the files older than 15 days
+        while IFS= read -r file
+        do 
+            echo -e "${G}removing the older log files more than 15 days from the source directory ${N}"
+            rm -rf "${file}"
+        done <<< "${filess}"
+    else 
+        echo -e "${R}The files are not zipped..${N}"
+        exit 1
+    fi
 else 
     echo -e "${R}the log files more than ${days} days are not found ${N}"
     exit 1
